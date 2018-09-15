@@ -1,0 +1,105 @@
+//Library management system 
+//Algorithm Assignment
+
+class B_Search
+{   
+    // function to implement binary search
+    static int binarySearch(int arr[], int low, int high, int s_key)
+    {
+       if (high < low)
+           return -1;
+               
+       int mid = (low + high)/2;  
+       if (s_key == arr[mid])
+
+    	   return mid;
+       if (s_key > arr[mid])
+           return binarySearch(arr, (mid + 1), high, s_key);
+       return binarySearch(arr, low, (mid -1), s_key);
+    }
+
+    static int deleteElement(int arr[], int n, int d_key)
+    {
+        int pos = binarySearch(arr, 0, n-1, d_key);
+      
+        if (pos==-1)
+        {
+            System.out.println("Book not found");
+            return n;
+        }
+      
+        int i;
+        for (i=pos; i<n-1; i++)
+            arr[i] = arr[i+1];
+      
+        return n-1;
+    }
+   
+    
+    public static void main (String[] args)
+    {
+       int arr[] = {1001, 1002, 1003, 1004, 1009, 1010,7002};
+       int n,s_key;
+       n = arr.length;
+       s_key =1004;
+       int d_key = 1010;
+       
+       int i;
+      
+       System.out.println("Index:  " + 
+           binarySearch(arr,0, n, s_key)  );
+       
+       
+       
+       System.out.print("Book stock before deleting BookID:\n");
+       for (i=0; i<n; i++)
+         System.out.print(arr[i] + " ");
+     
+       n = deleteElement(arr, n, d_key);
+     
+       System.out.print("\n\nBook stock after deleting BookID:\n");
+       for (i=0; i<n; i++)
+         System.out.print(arr[i] + " ");
+       
+              
+      
+    }    
+}    
+
+
+
+public class Insert_In_Sorted {
+	
+    static int insertSorted(int arr[], int n, int key, int capacity)
+    {
+        // Cannot insert more elements if n is already more than or equal to capcity
+        if (n >= capacity)
+           return n;
+      
+        int i;
+        for (i=n-1; (i >= 0 && arr[i] > key); i--)
+           arr[i+1] = arr[i];
+      
+        arr[i+1] = key;
+      
+        return (n+1);
+    }
+  
+    public static void main (String[] args)
+    {
+    	int arr[] = {1001, 1002, 1003, 1004, 1009, 1010,7002};
+        int capacity = arr.length;
+        int n = 6;
+        int key = 299906;
+  
+    System.out.print("\nBefore Inserting new book to the stock: ");
+    for (int i=0; i<n; i++)
+        System.out.print(arr[i] + " ");
+  
+    n = insertSorted(arr, n, key, capacity);
+  
+    System.out.print("\nAfter Inserting new book to the stock: ");
+    for (int i=0; i<n; i++)
+        System.out.print(arr[i] + " ");
+    }   
+}
